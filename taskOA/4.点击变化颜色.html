@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=input, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html,body{
+      height: 100%;
+      overflow: hidden;
+    }
+    button{
+      padding: 60px;
+      line-height: 40px;
+    }
+  </style>
+</head>
+<body style="background-color: white;">
+  <button id="changebtn">change the color</button>
+  <script>
+    let body = document.body;
+    let changeBtn = document.getElementById('changebtn')
+    // changeBtn.onclick=function(){
+    //   let bodybc = body.style.backgroundColor
+    //   switch (bodybc) {
+    //     case 'white':
+    //       body.style.backgroundColor='red'
+    //       break;
+    //   case 'red':
+    //     body.style.backgroundColor='green'
+    //       break;
+    //       case 'green':
+    //     body.style.backgroundColor='blue'
+    //       break;
+    //       default:
+    //         body.style.backgroundColor='white'
+
+    //   }
+    // }
+  let ary =['white','pink','lightblue','lightgreen']
+  let i =0
+  changeBtn.onclick = function(){
+    i++;
+    i>ary.length-1 ? i=0 : null
+     body.style.backgroundColor = ary[i]
+  }
+  </script>
+</body>
+</html>

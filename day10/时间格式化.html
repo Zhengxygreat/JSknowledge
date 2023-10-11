@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间格式化</title>
+</head>
+<body>
+  <script>
+    String.prototype.formatTime = function formatTime(template){
+      //初始化模版
+      typeof template === 'undefined' ? template='{0}年{1}月{2}日 {3}:{4}:{5}' : null;
+      //this:我们要处理的字符串
+      //获取日期字符串中的数字信息
+      let matchAry = this.match(/\d+/g);
+      //模版和数据的渲染(引擎机制)
+      template = template.replace(/\{\d+}/g,(x,y)=>{
+        let val = matchAry[y]||'00';
+        val.length < 2 ? val = "0" + val : null;
+        return val;
+      });
+      return template;
+    }
+  </script>
+</body>
+</html>

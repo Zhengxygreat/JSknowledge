@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" placeholder="请输入过滤的条件" v-model="keyword">
+    <ul>
+      <li v-for="(person, index) in newPersons" :key="person.id">
+        {{person.id}}---{{person.name}}---{{person.age}}
+      </li>
+    </ul>
+    <button @click="sortType= 1">升序排列</button>
+    <button @click="sortType= 2">降序排列</button>
+    <button @click="sortType= 0">原型</button>
+  </div>
+  <!-- <div id="app">
+    <input type="text" placeholder="请输入过滤的条件" v-model="keyword">
+    <ul>
+      <li v-for="(person,index) in newPersons" :key="person.id">
+        {{person.id}}----{{person.name}}----{{person.age}}
+      </li>
+    </ul>
+    <button @click="sortType= 1">按年龄升序</button>
+    <button @click="sortType= 2">按年龄降序</button>
+    <button @click="sortType= 0">按原样排序</button>
+  </div> -->
+  <script src="./js/vue.js"></script>
+  <!-- <script>
+    Vue.config.productionTip = false //消除启动浏览器的生产提示信息
+  const vm = new Vue({
+    el:'#app',
+    data(){
+      return{
+        keyword:'',
+        persons:[
+          {id:1,name:'zhaoliying',age:33},
+          {id:2,name:'wangying',age:34},
+          {id:3,name:'lili',age:40},
+          {id:4,name:'yangyiyi',age:28}
+        ],
+        sortType:0 //0代表原样，1代表升序，2降序
+      }
+    },
+    methods: {
+      // test(num){
+      //   this.sortType =num
+      // }
+    },
+    computed:{
+      newPersons(){
+        //从vm身上获取keyword 和persons
+        let {keyword,persons,sortType} = this
+        //根据获取的这两个数据计算新的数据
+        //函数和方法最主要的是三要素
+        //功能   从原数组当中过滤出一个新的数组
+        //参数   回调函数（同步的回调）
+        //回调函数的参数：当前项  当前项的索引 当前遍历的数组
+              //功能：对遍历的每一项执行回调函数
+              //返回值：返回的是一个布尔值，（布尔值，条件表达式）根据这个布尔值判断要不要收集到新数组当中
+              //不是箭头函数
+              // let arr = persons.filler(function(item,index){
+              //   return item.name.indexOf(keyword) !== -1
+              // })
+              //剪头函数
+        let arr = persons.filter(
+          item=>item.name.indexOf(keyword) !== -1   )
+          if(sortType !==0){
+            arr.sort((a,b)=> sortType === 1 ? a.age - b.age : b.age - a.age)
+          }
+          return arr
+      }
+    }
+  })
+  </script> -->
+<script>
+  Vue.config.productionTip = false
+const vm = new Vue({
+  el:'#app',
+  data(){
+    return{
+      keyword:'',
+      persons:[
+          {id:1,name:'zhaoliying',age:23},
+          {id:2,name:'yangmi',age:33},
+          {id:3,name:'qiwei',age:35},
+          {id:4,name:'dilireba',age:22}
+      ],
+      sortType:0,
+    }
+  },
+  computed:{
+    newPersons(){
+      let {keyword, persons,sortType} = this
+      let arr = persons.filter(item=>item.name.indexOf(keyword) !== -1)
+      if(sortType !== 0){
+        arr.sort((a,b) => sortType ===1 ? a.age - b.age : b.age - a.age)
+      }
+      return arr
+    }
+  },
+})
+</script>
+
+</body>
+</html>

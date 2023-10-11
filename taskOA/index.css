@@ -1,0 +1,19 @@
+.total-box{
+  box-sizing: border-box;
+  margin: 20px auto;
+  padding: 10px;
+  width: 400px;
+  border: 1px solid #ddd;
+}
+.total-box input{
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #999;
+}
+.total-box span{
+  padding: 0 10px ;
+  font-size: 16px;
+}

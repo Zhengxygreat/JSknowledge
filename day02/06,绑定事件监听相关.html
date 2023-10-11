@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 第一种 事件监听的完整写法-->
+    <button v-on:click="test1">test1</button>
+     <!-- 第二种 事件监听的简写-->
+     <!-- 在vue的模版当中，事件回调函数在调用的时候可以传递$event，名字不能随意改，这个东西就是事件对象 -->
+    <button @click="test2($event)">test2</button>
+     <!-- 第三种 事件在添加的时候除了事件对象之外还要传递自己的参数的时候必须写$event,谁先传谁后传你开心就好-->
+     <button @click="test3($event,'yangmi')">test3</button>
+    <!-- 第四种 VUE事件当中阻止冒泡 -->
+    <div style="width:300px;height: 300px;background-color:hotpink" @click="out">
+      <!-- vue中加事件描述符.stop，就可以停止冒泡 -->
+      <div style="width:100px;height: 100px;background-color:skyblue" @click.stop="inner"></div>
+    </div>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el:'#app',
+      data(){
+        return {
+          
+        }
+      },
+      methods: {
+        test1(event){
+          console.log(event.target.innerHTML)
+        },
+        test2(event){
+          console.log(event.target.innerHTML)
+        },
+        test3(event,str){
+          console.log(event)
+        },
+        out(){
+          console.log('外部')
+        },
+        inner(event){
+          console.log('内部')
+          // event.stopPropagation();//阻止冒泡
+        }
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隔行变色</title>
+  <!-- IMPORT CSS -->
+  <style lang="">
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    ul{
+      list-style: none;
+    }
+    #box{
+      margin: 10px auto;
+      width: 500px;
+    }
+    #box li{
+      line-height: 50px;
+      border-bottom: 1px dashed #999;
+    }
+    /* li:nth-child(odd){
+      background-color: pink;
+    }
+    li:nth-child(even){
+      background-color: skyblue;
+    }
+    li:nth-child(odd):hover{
+      background-color: hotpink;
+    }
+    li:nth-child(even):hover{
+      background-color: darkslateblue;
+    } */
+  </style>
+</head>
+<body>
+  <ul id="box">
+    <li>我是第1个</li>
+    <li>我是第2个</li>
+    <li>我是第3个</li>
+    <li>我是第4个</li>
+    <li>我是第5个</li>
+  </ul>
+  <!-- IMPORT JS -->
+  <script>
+    var box = document.getElementById('box')
+    var boxList = box.getElementsByTagName('li')
+    for(var i = 0; i<boxList.length;i++){
+      var bg = i % 2 ===0 ?'white':'pink';
+      //设置自定义属性myOriginBg用来存储每一个li的背景
+      boxList[i].style.backgroundColor =bg
+      boxList[i].myOriginBg = bg;
+      boxList[i].onmouseover = function(){
+      this.style.backgroundColor = 'skyblue'
+    };
+    boxList[i].onmouseout = function(){
+      this.style.backgroundColor = this.myOriginBg
+    }
+    }
+
+  </script>
+</body>
+</html>

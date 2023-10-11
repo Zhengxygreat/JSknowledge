@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>验证码</title>
+</head>
+<body>
+  <!-- <script src="01,字符串.js"></script> -->
+  <!-- <script src="实现一个方法queryURLParameter.js"></script> -->
+  <script src="验证码.js"></script>
+  <input type="text" id="codeInp">
+  <br>
+  <span id="codeBox">XXXX</span>
+  <button id="changeCode">看不清楚换一个</button>
+  <!-- IMPORT JS -->
+  <script>
+    let codeInp = document.getElementById('codeInp'),
+        codeBox = document.getElementById('codeBox'),
+        changeCode = document.getElementById('changeCode');
+    /*
+      queryCode:获取到四位随机的验证码，然后放到指定的盒子中
+        @params
+        @return
+    by joanna on 2023/10/9
+    */
+    function queryCode(){
+      let area = '0123456789abcdefghijklmnopqrstvuwxyzQWERTYUIOPASDFGHJKLZXCVBNM';
+      let result = '';
+      for(i = 0; i<4;i++){
+        //每次循环都获取一个随机的数字索引
+        let ran = Math.round(Math.random()*61);
+        //再根据获取的索引从范围字符串中主动找到对应的字符。把找到的字符拼接到最后的结果中
+        result += area.charAt(ran)
+      }
+      //放到盒子中
+      codeBox.innerHTML = result;
+      codeInp.onblur= function(){
+        //文本框失去焦点事件
+        //获取用户和验证码内容
+        let val = codeInp.value;
+        let code = codeBox.innerHTML;
+        if(val.toLowerCase() === code.toLowerCase()){
+          alert('验证码输入成功!')
+        }else{
+          alert('验证码输入错误，请重试!');
+          codeInp.value = '';
+          queryCode()
+        }
+      }
+    };
+    queryCode();
+    changeCode.onclick=queryCode;
+  </script>
+</body>
+</html>

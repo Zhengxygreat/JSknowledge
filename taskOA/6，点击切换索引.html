@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button value="btn1">btn1</button>
+  <button value="btn2">btn2</button>
+  <button value="btn3">btn3</button>
+  <button value="btn4">btn4</button>
+  <button value="btn5">btn5</button>
+
+  <script>
+    // 
+    var btnList = document.getElementsByTagName('button')
+    for(var i = 0; i<btnList.length;i++){
+      btnList[i].myIndex = i;
+      btnList[i].onclick=function(){
+        alert(this.myIndex)
+      }
+    }
+  </script>
+</body>
+</html>

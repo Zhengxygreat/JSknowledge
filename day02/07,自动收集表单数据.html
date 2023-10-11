@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <label for="in1">用户名</label>
+    <input type="text" id="in1" v-model="userInfo.username">
+    <label>
+      密码: <input type="password" v-model="userInfo.password">
+    </label>
+    <br>
+    性别：
+    <label>
+      男: <input type="radio" value="male" name="sex" v-model="userInfo.sex">
+    </label>
+    <label>
+      女: <input type="radio" value="female" name="sex" v-model="userInfo.sex">
+    </label>
+    <br>
+
+    爱好：
+    <label>
+      🏀<input type="checkbox" value="backetball" v-model="userInfo.favs">
+    </label>
+    <label>
+      ⚽️<input type="checkbox" value="football" v-model="userInfo.favs">
+    </label>
+    <label>
+      🏓️<input type="checkbox" value="pingpang" v-model="userInfo.favs">
+    </label>
+    <br>
+
+    城市：
+    <!-- select这个标签它的value值是 选中的option的value值 -->
+    <select v-model="userInfo.cityId">
+      <option :value="city.id" v-for="(city, index) in citys" :key="city.id">{{city.name}}</option>
+    </select>
+    <br>
+
+    <textarea cols="30" rows="10" v-model="userInfo.decs"></textarea>
+    <br>
+    <button @click="submit">提交</button>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+  const vm = new Vue({
+    el:'#app',
+    data(){
+        return{
+          citys:[
+            {id:1,name:'北京'},
+            {id:2,name:'上海'},
+            {id:3,name:'杭州'}
+          ],
+          userInfo:{
+            username:'',
+            password:'',
+            sex:'',
+            favs:[],
+            cityId:1,
+            decs:'',
+          }
+        }
+    },
+    methods: {
+      submit(){
+        axios({
+          url:'后台提供的接口地址',
+          methods:'post'
+        })
+      }
+    },
+  })
+  </script>
+</body>
+</html>
